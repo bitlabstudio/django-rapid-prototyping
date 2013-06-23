@@ -1,5 +1,7 @@
 === (ongoing) ===
 
+=== 0.3 ===
+
 - Added context utils functions
 
 === 0.2 ===
