@@ -1,10 +1,12 @@
 {% load rapid_prototyping_tags %}
 
 {% for item in costs %}
+{% get_hourly_rate item.rate HOURLY_RATE as hourly_rate %}
 <tr>
     <td>{{ item.id }}</td>
     <td>{{ item.task }}</td>
     <td><span class="costsTime">{{ item.time }}</span></td>
-    <td><span class="costsCosts">{{ item.time|calculate_costs:HOURLY_RATE }}</span></td>
+    <td><span>{{ hourly_rate }}</span></td>
+    <td><span class="costsCosts">{{ item.time|calculate_costs:hourly_rate }}</span></td>
 </tr>
 {% endfor %}

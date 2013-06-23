@@ -1,4 +1,8 @@
 === (ongoing) ===
+
+- Added get_hourly_rate templatetag
+
+=== 0.1 ===
 - Initial commit
 
 
