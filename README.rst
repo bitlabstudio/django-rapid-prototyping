@@ -92,24 +92,28 @@ the estimated costs for all subtasks that need to be done in order to get that
 page up and running. Such a file could look like this::
 
     # in yourproject/context/home_costs.py
+    from rapid_prototyping.context.utils import append_overhead_costs, get_counter
     HOURLY_RATE = 70
+    MAIN_ID = 100
+    counter = [-1]
     costs = [
         {
-            'id': 100,
+            'id': MAIN_ID + get_counter(counter)[0],
             'task': 'Create logo',
             'time': 240,
         },
         {
-            'id': 101,
+            'id': MAIN_ID + get_counter(counter)[0],
             'task': 'Create color scheme',
             'time': 120,
         },
         {
-            'id': 102,
+            'id': MAIN_ID + get_counter(counter)[0],
             'task': 'Create email form',
             'time': 30,
         }
     ]
+    costs = append_overhead_costs(costs, MAIN_ID + get_counter(counter)[0])
 
 When you have done all this you should be able to visit ``/p/home.html`` and
 see your template with a table of costs below. You should also be able to see

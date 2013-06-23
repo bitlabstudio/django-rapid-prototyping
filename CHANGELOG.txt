@@ -1,5 +1,7 @@
 === (ongoing) ===
 
+- Added context utils functions
+
 === 0.2 ===
 
 - Bugfix for get_hourly_rate tag
