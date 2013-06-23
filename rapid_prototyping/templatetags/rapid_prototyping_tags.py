@@ -29,4 +29,6 @@ def get_hourly_rate(item_rate, default_rate):
         {{ hourly_rate %}
 
     """
-    return item_rate is None and default_rate or item_rate
+    if item_rate is None or item_rate is '':
+        return default_rate
+    return item_rate
