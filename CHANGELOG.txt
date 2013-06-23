@@ -1,5 +1,7 @@
 === (ongoing) ===
 
+=== 0.2 ===
+
 - Bugfix for get_hourly_rate tag
 
 === 0.1.1 ===
