@@ -25,17 +25,17 @@ class GetHourlyRateTestCase(TestCase):
     longMessage = True
 
     def test_tag(self):
-        result = get_hourly_rate(None, 70)
+        result = get_hourly_rate(None)
         self.assertEqual(result, 70, msg=(
             'If not item rate has been given, the default hourly rate should'
             ' be returned'))
 
-        result = get_hourly_rate(50, 70)
+        result = get_hourly_rate(50)
         self.assertEqual(result, 50, msg=(
             'If an item rate is given, it should override the default hourly'
             ' rate and be returned.'))
 
-        result = get_hourly_rate(0, 70)
+        result = get_hourly_rate(0)
         self.assertEqual(result, 0, msg=(
             'If the item rate is given and it is 0, it should return 0. This'
             ' is to enable defining tasks that are given away for free.'))

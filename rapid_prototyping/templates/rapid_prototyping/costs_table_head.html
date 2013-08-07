@@ -1,10 +1,17 @@
 <thead>
-    <caption><p><strong>Estimated Costs</strong></p></caption>
+    {% if not hide_caption == 1 %}
+        <caption><p><strong>Estimated Costs</strong></p></caption>
+    {% endif %}
     <tr>
         <th>ID</th>
         <th>Task</th>
-        <th>Time</th>
+        <th>Estimated Time</th>
         <th>Rate</th>
-        <th>Costs</th>
+        <th>Estimated Costs</th>
+        <th>Sprint ID</th>
+        <th>Developer Estimated Time</th>
+        <th>Actual Time</th>
+        <th>Actual Cost</th>
+        <th>Difference</th>
     </tr>
 </thead>

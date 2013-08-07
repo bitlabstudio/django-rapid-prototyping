@@ -1,5 +1,6 @@
 """Templatetags for the rapid_prototyping app."""
 from django import template
+from django.conf import settings
 
 
 register = template.Library()
@@ -18,17 +19,30 @@ def calculate_costs(minutes, hourly_rate):
     return float(minutes) / 60 * hourly_rate
 
 
+@register.simple_tag
+def get_difference(time, actual_time):
+    """
+    Returns the difference in percent for two given times.
+
+    If it returns 1 it means that the task was finished as planned.
+    If it returns n > 1 it means that the task took n% longer than planned
+    If it returns n < 1 it means that the task took n% lesser than planned
+
+    """
+    return round(float(actual_time) / float(time), 2)
+
+
 @register.assignment_tag
-def get_hourly_rate(item_rate, default_rate):
+def get_hourly_rate(item_rate):
     """
     Returns the item rate if given, otherwise the default rate.
 
     Usage::
 
-        {% get_hourly_rate item.rate HOURLY_RATE as hourly_rate %}
+        {% get_hourly_rate item.rate as hourly_rate %}
         {{ hourly_rate %}
 
     """
     if item_rate is None or item_rate is '':
-        return default_rate
+        return settings.RAPID_PROTOTYPING_HOURLY_RATE
     return item_rate

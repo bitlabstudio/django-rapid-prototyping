@@ -1,12 +1,36 @@
 {% load rapid_prototyping_tags %}
 
 {% for item in costs %}
-{% get_hourly_rate item.rate HOURLY_RATE as hourly_rate %}
+{% get_hourly_rate item.rate as hourly_rate %}
 <tr>
     <td>{{ item.id }}</td>
-    <td>{{ item.task }}</td>
+
+    {% if item.link %}
+        <td><a href="{{ item.link }}">{{ item.task }}</a></td>
+    {% else %}
+        <td>{{ item.task }}</td>
+    {% endif %}
+
     <td><span class="costsTime">{{ item.time }}</span></td>
     <td><span>{{ hourly_rate }}</span></td>
     <td><span class="costsCosts">{{ item.time|calculate_costs:hourly_rate }}</span></td>
+
+    <td>{{ item.sprint }}</td>
+
+    {% if item.developer_time %}
+        <td><span class="costsDeveloperTime">{{ item.developer_time }}</span></td>
+    {% else %}
+        <td></td>
+    {% endif %}
+
+    {% if item.actual_time %}
+        <td><span class="costsActualTime">{{ item.actual_time }}</span></td>
+        <td><span class="costsActualCosts">{{ item.actual_time|calculate_costs:hourly_rate }}</span></td>
+        <td><span class="costsDifference">{% get_difference item.time item.actual_time %}</span></td>
+    {% else %}
+        <td></td>
+        <td></td>
+        <td></td>
+    {% endif %}
 </tr>
 {% endfor %}

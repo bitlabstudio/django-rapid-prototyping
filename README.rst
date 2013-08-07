@@ -35,6 +35,8 @@ Add the ``RapidPrototypingView`` from ``django-libs`` to your ``urls.py``::
 We had that view in django-libs long before we started this app. In the
 future we might deprecate that view in django-libs and move it over here.
 
+TODO: Describe new usage
+
 
 Usage
 -----

@@ -1,5 +1,8 @@
 === (ongoing) ===
 
+- Added sprints view
+- Massive refactoring and API changes, see updated README
+
 === 0.3 ===
 
 - Added context utils functions

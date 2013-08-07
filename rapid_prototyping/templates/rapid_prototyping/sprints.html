@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block main %}
+<h1>{% trans "Sprints" %}</h1>
+{% for sprint in sprints %}
+    <h2>{% trans "Sprint" %} #{{ sprint.id }}: {{ sprint.title }}</h2>
+
+    <table id="sprint{{ sprint.id }}CostTable" class="table table-bordered table-hover">
+        {% include "rapid_prototyping/costs_table_head.html" with hide_caption=1 %}
+        <tbody>
+            {% include "rapid_prototyping/costs_table_body.html" with costs=sprint.tasks %}
+            {% include "rapid_prototyping/costs_total.html" %}
+        </tbody>
+    </table>
+{% endfor %}
+<a  href="/p/index.html">Index</a>
+{% endblock %}
+
+{% block extra_script %}
+<script>
+    $(document).ready(function() {
+        {% for sprint in sprints %}
+            calculate_total('#sprint{{ sprint.id }}CostTable');
+        {% endfor %}
+    });
+</script>
+{% endblock %}
