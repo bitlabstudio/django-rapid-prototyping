@@ -1,5 +1,7 @@
 === (ongoing) ===
 
+=== 0.4 ===
+
 - Added sprints view
 - Massive refactoring and API changes, see updated README
 
