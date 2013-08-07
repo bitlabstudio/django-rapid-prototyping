@@ -14,28 +14,48 @@ To get the latest commit from GitHub::
 
     $ pip install -e git+git://github.com/bitmazk/django-rapid-prototyping.git#egg=rapid_prototyping
 
-Add ``rapid_prototyping`` to your ``INSTALLED_APPS``::
+Add ``django_libs`` and ``rapid_prototyping`` to your ``INSTALLED_APPS``::
 
     INSTALLED_APPS = (
         ...,
+        'django_libs'
         'rapid_prototyping',
     )
 
-Add the ``RapidPrototypingView`` from ``django-libs`` to your ``urls.py``::
+Add the ``RapidPrototypingView`` from ``django-libs`` and include the
+``urls.py`` of this app in your main ``urls.py``.
 
     from django_libs.views import RapidPrototypingView
 
     urlpatterns = patterns('',
         ...
+        url(r'^p/', include('rapid_prototyping.urls')),
         url(r'^p/(?P<template_path>.*)$',
             RapidPrototypingView.as_view(),
             name='prototype'),
     )
 
-We had that view in django-libs long before we started this app. In the
-future we might deprecate that view in django-libs and move it over here.
+Add the mandatory settings to your ``settings.py``. See heading ``Settings``
+below.
 
-TODO: Describe new usage
+Settings
+--------
+
+RAPID_PROTOTYPING_SPRINTS_MODULE
+++++++++++++++++++++++++++++++++
+
+Mandatory setting. Should be a fully qualified name to the ``sprints``
+array in your ``sprints`` module somewhere in your project. This would usually
+be something like ``myproject.context.sprints.sprints``.
+
+Of course you have to create that file and add the ``sprints`` array. See
+heading ``Sprints`` below.
+
+
+RAPID_PROTOTYPING_HOURLY_RATE
++++++++++++++++++++++++++++++
+
+Mandatory setting. Set this to an integer representing your hourly rate.
 
 
 Usage
@@ -55,9 +75,7 @@ In your ``base.html`` add the following block to the bottom of your site::
     </div>
     {% endblock %}
 
-    {% comment %}
-    Include this sctipt after your jQuery include.
-    {% endcomment %}
+    {% comment %}Include this sctipt after your jQuery include.{% endcomment %}
     <script src="{{ STATIC_URL }}proto/js/calculate_total.js"></script>
 
 Now create an ``index.html`` like so::
@@ -95,7 +113,7 @@ page up and running. Such a file could look like this::
 
     # in yourproject/context/home_costs.py
     from rapid_prototyping.context.utils import append_overhead_costs, get_counter
-    HOURLY_RATE = 70
+
     MAIN_ID = 100
     counter = [-1]
     costs = [
@@ -120,6 +138,69 @@ page up and running. Such a file could look like this::
 When you have done all this you should be able to visit ``/p/home.html`` and
 see your template with a table of costs below. You should also be able to see
 ``/p/index.html`` with a list of all pages and a table of total project costs.
+
+Sprints
+-------
+
+If you have done all the above, you will have some prototype pages with tables
+at the bottom that show planned tasks for each page. You will also have an
+index page which shows all tasks for the whole project.
+
+Now you migiht want to group tasks into sprints and track the actual time that
+has been taken to implement a certain task.
+
+First of all, create a ``yourproject/context/sprints.py`` like so::
+
+    sprints = [
+        {
+            'id': 1,
+            'title': 'Week 32',
+        },
+        {
+            'id': 2,
+            'title': 'Week 33',
+        },
+    ]
+
+That's all. It's just an array of dicts, each dict describes a sprint. The
+title can be useful when rendering the list of sprints, the important part
+is the ``id``.
+
+In order to assign tasks to a sprint, open the corresponding ``*_costs.py``
+file and add some more information to the task's dict::
+
+    costs = [
+        {
+            'id': MAIN_ID + get_counter(counter)[0],
+            'task': 'Create logo',
+            'time': 240,
+            'developer_time': 300,
+            'actual_time': 450,
+            'link': 'http://www.trello.com/',
+            'sprint': 1,
+        },
+    ...
+
+The additional columns are the following:
+
+**developer_time**: While ``time`` is the time the project manager estimated
+at the very beginning when communicating with the customer, ``developer_time``
+is the time that the person who actually implementes this estimates at the
+beginning of a sprint. This can be different from ``time`` because as the
+project progresses and patterns / frameworks emerge, some tasks can become
+much easier or much more difficult than initally planned.
+
+**actual_time**: This is the time that the developer actually took in order
+to complete the task.
+
+**link**: If you are using some other software, like www.trello.com to manage
+your project, you can add a link to the corresponding ticket for this task
+in your other software here.
+
+**sprint**: This must be one of the IDs that you have defined in your
+``sprints.py``.
+
+If you have done all the above, you should be able to visit ``/p/sprints/``.
 
 
 Contribute
