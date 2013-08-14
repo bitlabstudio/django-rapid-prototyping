@@ -62,3 +62,5 @@ SECRET_KEY = 'foobar'
 
 RAPID_PROTOTYPING_HOURLY_RATE = 70
 RAPID_PROTOTYPING_SPRINTS_MODULE = 'rapid_prototyping.tests.test_app.context.sprints.sprints'  # NOQA
+
+TEST_RUN = True

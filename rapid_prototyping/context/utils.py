@@ -2,6 +2,8 @@
 from operator import itemgetter
 import pkgutil
 
+from django.conf import settings
+
 from django_libs.loaders import load_member_from_setting, load_member
 
 
@@ -26,8 +28,16 @@ def get_sprints():
         'RAPID_PROTOTYPING_SPRINTS_MODULE')
 
     all_tasks = []
-    for importer, package_name, _ in pkgutil.walk_packages():
+    # TODO The onerror parameter is basically a workaround to ignore errors
+    # The reason for that being, that in my case, the GeoDjango package was in
+    # the path, permanently requesting certain libraries on import. Since they
+    # were not present, the search was aborted with an OSError.
+    for importer, package_name, _ in pkgutil.walk_packages(
+            onerror=lambda p: p):
         if not package_name.endswith('_costs'):
+            continue
+        if not getattr(settings, 'TEST_RUN', None) and (
+                '.test_app.' in package_name):
             continue
         costs = load_member(package_name + '.costs')
         for task in costs:
