@@ -1,5 +1,4 @@
 """Views for the rapid_prototyping app."""
-from django.conf import settings
 from django.views.generic import TemplateView
 
 from .context.utils import get_sprints

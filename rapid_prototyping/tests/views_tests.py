@@ -1,5 +1,5 @@
 """Tests for the views of the rapid_prototyping app."""
-from mock import Mock, patch
+from mock import patch
 
 from django.test import TestCase, RequestFactory
 
