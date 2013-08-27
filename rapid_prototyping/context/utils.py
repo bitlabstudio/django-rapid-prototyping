@@ -45,10 +45,15 @@ def get_sprints():
     sorted_tasks = sorted(all_tasks, key=itemgetter('id'))
 
     for sprint in sprints:
+        remaining_time = 0
         sprint['tasks'] = []
         for task in sorted_tasks:
             if task.get('sprint') == sprint.get('id'):
+                if not task.get('actual_time'):
+                    remaining_time += \
+                        task.get('developer_time') or task.get('time')
                 sprint.get('tasks').append(task)
+        sprint['remaining_time'] = remaining_time
     return sprints
 
 

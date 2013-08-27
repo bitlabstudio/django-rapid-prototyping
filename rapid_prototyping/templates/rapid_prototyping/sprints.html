@@ -6,6 +6,25 @@
 {% for sprint in sprints %}
     <h2>{% trans "Sprint" %} #{{ sprint.id }}: {{ sprint.title }}</h2>
 
+    <table id="sprint{{ sprint.id }}Metadata" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Developer Estimated Time</th>
+                <th>Unfinished Tasks</th>
+                <th>Unfinished Time</th>
+                <th>Remaining Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ sprint.estimated_time }}</td>
+                <td>{{ sprint.unfinished_tasks }}</td>
+                <td>{{ sprint.unfinished_time }}</td>
+                <td>{{ sprint.remaining_time }}</td>
+            </tr>
+        </tbody>
+    </table>
+
     <table id="sprint{{ sprint.id }}CostTable" class="table table-bordered table-hover">
         {% include "rapid_prototyping/costs_table_head.html" with hide_caption=1 %}
         <tbody>

@@ -202,6 +202,47 @@ in your other software here.
 
 If you have done all the above, you should be able to visit ``/p/sprints/``.
 
+You will now see your sprints with their assigned tasks. Before you start a
+sprint, you might want to note down the total edeveloper estimated time at
+the beginning of the sprint. This is useful because if you can't finish
+some of the tasks and move them into the next sprint, the total will change
+and you will not know, how much time you initially estimated.
+
+Add the total developer estimated time like so::
+
+    sprints = [
+        {
+            'id': 1,
+            'title': 'Week 32',
+            'estimated_time': 1350,
+        },
+        {
+            'id': 2,
+            'title': 'Week 33',
+        },
+    ]
+
+After your sprint, you might want to note down which tasks could not be
+completed and how much time had been estimated for these tasks::
+
+    sprints = [
+        {
+            'id': 1,
+            'title': 'Week 32',
+            'estimated_time': 1350,
+            'unfinished_tasks': [300, 403, 407, 502, 503, 510],
+            'unfinished_time': 360,
+        },
+        {
+            'id': 2,
+            'title': 'Week 33',
+        },
+    ]
+
+At this point you must be careful to never add a new task in front of another
+task because then all IDs would be incremented and the IDs you noted down here
+would no longer be correct.
+
 
 Contribute
 ----------

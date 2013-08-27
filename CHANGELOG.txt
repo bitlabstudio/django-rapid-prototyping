@@ -2,6 +2,8 @@
 
 - Added new column: Developer Estimated Costs
 - Added rounding to two digits
+- Added sprint metadata table
+- Added remaining_time to each sprint
 
 === 0.4 ===
 
