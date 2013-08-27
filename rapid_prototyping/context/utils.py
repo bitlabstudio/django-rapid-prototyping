@@ -54,6 +54,7 @@ def get_sprints():
                         task.get('developer_time') or task.get('time')
                 sprint.get('tasks').append(task)
         sprint['remaining_time'] = remaining_time
+        sprint['remaining_hours'] = round(float(remaining_time) / 60, 2)
     return sprints
 
 
