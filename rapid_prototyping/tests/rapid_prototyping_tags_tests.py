@@ -13,8 +13,8 @@ class CalculateCostTestCase(TestCase):
     longMessage = True
 
     def test_tag(self):
-        result = calculate_costs(30, 70)
-        self.assertEqual(result, float(30) / 60 * 70, msg=(
+        result = calculate_costs(380, 70)
+        self.assertEqual(result, round(float(380) / 60 * 70, 2), msg=(
             'Tag should assume that the first parameter represents minutes'
             ' and the second parameter represents an hourly rate. It should'
             ' Correctly calculate the costs for the task based on the minutes'

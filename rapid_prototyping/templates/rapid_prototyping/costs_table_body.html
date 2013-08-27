@@ -19,7 +19,9 @@
 
     {% if item.developer_time %}
         <td><span class="costsDeveloperTime">{{ item.developer_time }}</span></td>
+        <td><span class="costsDeveloperCosts">{{ item.developer_time|calculate_costs:hourly_rate }}</span></td>
     {% else %}
+        <td></td>
         <td></td>
     {% endif %}
 

@@ -1,5 +1,8 @@
 === (ongoing) ===
 
+- Added new column: Developer Estimated Costs
+- Added rounding to two digits
+
 === 0.4 ===
 
 - Added sprints view

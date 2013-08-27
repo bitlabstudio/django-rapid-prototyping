@@ -16,7 +16,7 @@ def calculate_costs(minutes, hourly_rate):
         {{ item.time|calculate_costs:HOURLY_RATE }}
 
     """
-    return float(minutes) / 60 * hourly_rate
+    return round(float(minutes) / 60 * hourly_rate, 2)
 
 
 @register.simple_tag
