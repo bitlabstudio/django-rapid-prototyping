@@ -3,10 +3,16 @@
 {% for item in costs %}
 {% get_hourly_rate item.rate as hourly_rate %}
 <tr>
-    <td>{{ item.id }}</td>
+    <td>
+        {% if item.link %}
+            <a href="{{ item.link }}">{{ item.id }}</a>
+        {% else %}
+            {{ item.id }}
+        {% endif %}
+    </td>
 
-    {% if item.link %}
-        <td><a href="{{ item.link }}">{{ item.task }}</a></td>
+    {% if item.external_link %}
+        <td><a href="{{ item.external_link }}" target="_blank">{{ item.task }}</a></td>
     {% else %}
         <td>{{ item.task }}</td>
     {% endif %}
