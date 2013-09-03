@@ -42,6 +42,7 @@
         {% for sprint in sprints %}
             calculate_total('#sprint{{ sprint.id }}CostTable');
         {% endfor %}
+        $('[data-toggle="tooltip"]').tooltip();
     });
 </script>
 {% endblock %}

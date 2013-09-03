@@ -1,5 +1,8 @@
 === (ongoing) ===
 
+- Fixed Difference totals (now based on the time totals, not the difference
+  average)
+
 === 0.5 ===
 
 - Added new column: Developer Estimated Costs

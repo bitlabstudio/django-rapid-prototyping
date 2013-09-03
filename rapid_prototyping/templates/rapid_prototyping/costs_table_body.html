@@ -28,7 +28,7 @@
     {% if item.actual_time %}
         <td><span class="costsActualTime">{{ item.actual_time }}</span></td>
         <td><span class="costsActualCosts">{{ item.actual_time|calculate_costs:hourly_rate }}</span></td>
-        <td><span class="costsDifference">{% get_difference item.time item.actual_time %}</span></td>
+        <td><span class="costsDeveloperDifference">{% get_difference item.developer_time item.actual_time %}</span> <span class="costsEstimatedDifference">({% get_difference item.time item.actual_time %})</span></td>
     {% else %}
         <td></td>
         <td></td>
