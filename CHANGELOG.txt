@@ -1,5 +1,7 @@
 === (ongoing) ===
 
+=== 0.7 ===
+
 - Changed base template of sprints.html to proto/base.html
   You can simply create the file proto/base.html and put {% extends "base.html" %}
   into it if you want to use your main base.html
