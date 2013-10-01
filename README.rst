@@ -76,12 +76,12 @@ In your ``base.html`` add the following block to the bottom of your site::
     {% endblock %}
 
     {% comment %}Include this sctipt after your jQuery include.{% endcomment %}
-    <script src="{{ STATIC_URL }}proto/js/calculate_total.js"></script>
+    <script src="{{ STATIC_URL }}rapid_prototyping/js/calculate_total.js"></script>
 
 Now create an ``index.html`` like so::
 
     {% extends "base.html" %}
-    {% load libs_tags proto_tags %}
+    {% load libs_tags rapid_prototyping_tags %}
 
     {% block main %}
     <h1>Project Prototype</h1>
@@ -93,16 +93,16 @@ Now create an ``index.html`` like so::
 
     {% block costs_footer %}
     <table class="table table-bordered table-hover">
-        {% include "proto/costs_table_head.html" %}
+        {% include "rapid_prototyping/costs_table_head.html" %}
         <tbody>
             {% load_context "yourproject.context.home_costs" %}
-            {% include "proto/costs_table_body.html" %}
+            {% include "rapid_prototyping/costs_table_body.html" %}
             {% comment %}
                 Load context and include table body for all pages that are part of your prototype here
                 {% load_context "yourproject.context.search_results_costs" %}
-                {% include "proto/costs_table_body.html" %}
+                {% include "rapid_prototyping/costs_table_body.html" %}
             {% endcomment %}
-            {% include "proto/costs_total.html" %}
+            {% include "rapid_prototyping/costs_total.html" %}
         </tbody>
     </table>
     {% endblock %}
