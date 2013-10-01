@@ -23,7 +23,7 @@ Add ``django_libs`` and ``rapid_prototyping`` to your ``INSTALLED_APPS``::
     )
 
 Add the ``RapidPrototypingView`` from ``django-libs`` and include the
-``urls.py`` of this app in your main ``urls.py``.
+``urls.py`` of this app in your main ``urls.py``::
 
     from django_libs.views import RapidPrototypingView
 
