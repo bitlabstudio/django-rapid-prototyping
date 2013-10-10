@@ -61,7 +61,7 @@ Mandatory setting. Set this to an integer representing your hourly rate.
 Usage
 -----
 
-In your ``base.html`` add the following block to the bottom of your site::
+In your ``proto/p_base.html`` add the following block to the bottom of your site::
 
     {% block costs_footer_container %}
     <div class="costsFooter">
@@ -78,9 +78,9 @@ In your ``base.html`` add the following block to the bottom of your site::
     {% comment %}Include this sctipt after your jQuery include.{% endcomment %}
     <script src="{{ STATIC_URL }}rapid_prototyping/js/calculate_total.js"></script>
 
-Now create an ``index.html`` like so::
+Now create a ``p_index.html`` like so::
 
-    {% extends "base.html" %}
+    {% extends "proto/p_base.html" %}
     {% load libs_tags rapid_prototyping_tags %}
 
     {% block main %}
@@ -135,9 +135,10 @@ page up and running. Such a file could look like this::
     ]
     costs = append_overhead_costs(costs, MAIN_ID + get_counter(counter)[0])
 
-When you have done all this you should be able to visit ``/p/home.html`` and
-see your template with a table of costs below. You should also be able to see
-``/p/index.html`` with a list of all pages and a table of total project costs.
+When you have done all this you should be able to visit
+``/p/proto/p_home.html`` and see your template with a table of costs below. You
+should also be able to see ``/p/p_index.html`` with a list of all pages and a
+table of total project costs.
 
 Sprints
 -------

@@ -1,5 +1,8 @@
 === (ongoing) ===
 
+- Changed base.html to p_base.html. This allows us to have two base templates,
+  one for the wireframes and one for the actual website.
+
 === 0.7 ===
 
 - Changed base template of sprints.html to proto/base.html
