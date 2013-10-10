@@ -1,5 +1,7 @@
 === (ongoing) ===
 
+=== 0.8 ===
+
 - Changed base.html to p_base.html. This allows us to have two base templates,
   one for the wireframes and one for the actual website.
 
