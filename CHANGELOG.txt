@@ -1,5 +1,7 @@
 === (ongoing) ===
 
+- Changed urls to be compatible with django 1.6
+
 === 0.8 ===
 
 - Changed base.html to p_base.html. This allows us to have two base templates,
