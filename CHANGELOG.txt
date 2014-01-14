@@ -1,5 +1,7 @@
 === (ongoing) ===
 
+=== 0.9 ===
+
 - Changed urls to be compatible with django 1.6
 
 === 0.8 ===
