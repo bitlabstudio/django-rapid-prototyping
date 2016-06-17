@@ -37,7 +37,7 @@ def get_sprints():
         if not package_name.endswith('_costs'):
             continue
         if not getattr(settings, 'TEST_RUN', None) and (
-                '.test_app.' in package_name):
+                '.test_app.' in package_name):  # pragma: nocover
             continue
         costs = load_member(package_name + '.costs')
         for task in costs:

@@ -27,13 +27,12 @@ Add the ``RapidPrototypingView`` from ``django-libs`` and include the
 
     from django_libs.views import RapidPrototypingView
 
-    urlpatterns = patterns('',
-        ...
+    urlpatterns = [
         url(r'^p/', include('rapid_prototyping.urls')),
         url(r'^p/(?P<template_path>.*)$',
             RapidPrototypingView.as_view(),
             name='prototype'),
-    )
+    ]
 
 Add the mandatory settings to your ``settings.py``. See heading ``Settings``
 below.
@@ -67,7 +66,7 @@ In your ``proto/p_base.html`` add the following block to the bottom of your site
     <div class="costsFooter">
         <div class="container">
             <div class="row">
-                <div class="span12">
+                <div class="col-sm-12">
                     {% block costs_footer %}{% endblock %}
                 </div>
             </div>
@@ -76,7 +75,7 @@ In your ``proto/p_base.html`` add the following block to the bottom of your site
     {% endblock %}
 
     {% comment %}Include this sctipt after your jQuery include.{% endcomment %}
-    <script src="{{ STATIC_URL }}rapid_prototyping/js/calculate_total.js"></script>
+    <script src="{% static "rapid_prototyping/js/calculate_total.js" %}"></script>
 
 Now create a ``p_index.html`` like so::
 

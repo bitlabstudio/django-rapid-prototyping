@@ -10,7 +10,6 @@ costs = [
         'task': 'First task',
         'time': 90,
         'developer_time': 110,
-        'actual_time': 150,
         'link': 'http://www.google.com',
         'sprint': 1,
     },

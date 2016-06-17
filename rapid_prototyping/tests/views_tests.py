@@ -1,21 +1,16 @@
 """Tests for the views of the rapid_prototyping app."""
-from mock import patch
+from django.test import TestCase
 
-from django.test import TestCase, RequestFactory
+from django_libs.tests.mixins import ViewRequestFactoryTestMixin
 
 from ..views import SprintListView
 
 
-class SprintListViewTestCase(TestCase):
+class SprintListViewTestCase(ViewRequestFactoryTestMixin, TestCase):
     """Tests for the ``SprintListView`` class based view."""
-    longMessage = True
+    view_class = SprintListView
 
-    @patch('rapid_prototyping.views.get_sprints')
-    def test_view(self, get_sprints_mock):
-        req = RequestFactory().get('/')
-        view = SprintListView()
-        resp = view.dispatch(req)
-        self.assertEqual(resp.status_code, 200, msg=(
-            'View is callable'))
+    def test_view(self):
+        resp = self.is_callable()
         self.assertTrue('sprints' in resp.context_data, msg=(
             'Sprints have been added to the context data'))
